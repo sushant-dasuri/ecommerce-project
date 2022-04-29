@@ -1,0 +1,19 @@
+{
+  "name": "ecommerce-project",
+  "version": "1.0.0",
+  "description": "Ecommerce Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sushant-dasuri/ecommerce-project.git"
+  },
+  "author": "MORE INDIA - SUSHANT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sushant-dasuri/ecommerce-project/issues"
+  },
+  "homepage": "https://github.com/sushant-dasuri/ecommerce-project#readme"
+}
