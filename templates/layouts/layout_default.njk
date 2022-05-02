@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="favicon.ico" />
+
+        <title>{{ pageTitle }}</title>
+
+        {% include "../partials/_links.njk" %}
+    </head>
+
+    <body>
+        {% include "../partials/_preloader.njk" %}
+
+        <header id="header" class="js-reveal">
+            {% include "../partials/_header.njk" %}
+            
+            {% block hero %} 
+            {% endblock %}
+        </header>
+
+        <section id="main" class="main">
+            {% block main %} 
+            {% endblock %}
+        </section>
+        
+        <footer id="footer" class="footer js-reveal">
+            {% include "../partials/_footer.njk" %}
+        </footer>
+        {% include "../partials/_scripts.njk" %}
+    </body>
+</html>
