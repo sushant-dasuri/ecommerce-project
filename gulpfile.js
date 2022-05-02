@@ -209,7 +209,7 @@ function watch() {
     browserSync.init({
         server: {
            baseDir: "./",
-           index: "./index.html"
+           index: "./home.html"
         },
         port: 3000
     });
@@ -218,7 +218,7 @@ function watch() {
             done();
     }));
     gulp.watch("./assets/js/app.js").on("change", browserSync.reload);
-    gulp.watch(["template/**/*.+(html|njk)", "pages/**/*.+(html|njk)"], gulp.series("nunjucks")).on("change", browserSync.reload);
+    gulp.watch(["templates/**/*.+(html|njk)", "pages/**/*.+(html|njk)"], gulp.series("nunjucks")).on("change", browserSync.reload);
   
 }
 
