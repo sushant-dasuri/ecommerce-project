@@ -6,6 +6,8 @@ const htmlReplace = require("gulp-html-replace");
 const uglify = require("gulp-uglify");
 const imagemin = require("gulp-imagemin");
 const autoprefixer = require("gulp-autoprefixer");
+const nunjucksRender = require('gulp-nunjucks-render');
+const htmlbeautify = require("gulp-html-beautify");
 const sourcemaps = require("gulp-sourcemaps");
 const del = require("del");
 const browserSync = require("browser-sync").create();
@@ -132,6 +134,20 @@ function minifyJS() {
 
 }
 
+//Nunjucks Render
+function nunjucks() {
+    return gulp.src("pages/**/*.+(html|njk)")
+    .pipe(nunjucksRender({
+        path: ["template"]
+        }))
+    .pipe(htmlbeautify({
+        "indent_size": 4,
+        "indent_char": " "
+    }))
+    .pipe(gulp.dest("./"))
+    .pipe(browserSync.stream());
+}
+
 //Add html to dist
 function html() {
     return gulp.src(paths.html.src)
@@ -202,12 +218,12 @@ function watch() {
             done();
     }));
     gulp.watch("./assets/js/app.js").on("change", browserSync.reload);
-    gulp.watch("*.html").on("change", browserSync.reload);
+    gulp.watch(["template/**/*.+(html|njk)", "pages/**/*.+(html|njk)"], gulp.series("nunjucks")).on("change", browserSync.reload);
   
 }
 
 //Build task
-const build = gulp.series([convertSCSS, minifyCSS, minifyJS, html, replaceHTML, copyAssets]);
+const build = gulp.series([convertSCSS, minifyCSS, minifyJS, html, nunjucks, replaceHTML, copyAssets]);
 
 
 //Default task
@@ -225,3 +241,4 @@ exports.html = html;
 exports.replaceHTML = replaceHTML;
 exports.minifyImage = minifyImage;
 exports.copyAssets = copyAssets;
+exports.nunjucks = nunjucks;
