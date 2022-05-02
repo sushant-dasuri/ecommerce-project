@@ -1,0 +1,24 @@
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&family=Montserrat&family=Kaushan+Script&display=swap');
+
+// BOOTSTRAP OVERRIDES
+@import "utils/bs_override";
+
+// BOOTSTRAP AND ITS DEFAULT VARIABLES
+@import "bootstrap/bootstrap";
+
+// UTILS
+@import "utils/variables";
+@import "utils/mixins";
+@import "utils/colors";
+
+// BASE
+
+
+// MODULES
+@import "modules/preloader";
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
