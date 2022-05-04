@@ -1,0 +1,59 @@
+.navbar {
+    height: 6rem;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 80vw;
+    margin: 0px auto;
+
+    .navbar-brand {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0%);
+    }
+
+    .nav-item {
+
+       & > .nav-link{
+            color: $white;
+            margin-right: 3rem;
+            font-size: 1.25rem;
+
+            &:hover {
+                color: $primary-500;
+            }
+        }
+    }
+    
+    .toggle-container {
+        position: relative;
+        margin-top: 0.75rem;
+
+        .toggle-cart {
+            background: transparent;
+            border-color: transparent;
+            font-size: 1.6rem;
+            color: $white;
+            cursor: pointer;
+          }
+
+          .cart-item-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: $primary-500;
+            width: 1.75rem;
+            height: 1.75rem;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: $white;
+            font-weight: bold;
+            font-size: 1rem;
+          }
+      }
+     
+}
+

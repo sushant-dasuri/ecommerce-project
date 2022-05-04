@@ -2,6 +2,7 @@ const gulp = require("gulp");
 const sass = require("gulp-sass")(require('sass'));
 const cleanCSS = require("gulp-clean-css");
 const rename = require("gulp-rename");
+const merge = require("merge-stream");
 const htmlReplace = require("gulp-html-replace");
 const uglify = require("gulp-uglify");
 const imagemin = require("gulp-imagemin");
@@ -44,6 +45,28 @@ let paths = {
     fonts: {
         src: "assets/fonts/**/*",
         dest: 'dist/assets/fonts'
+    },
+    vendors: {
+       scss: {
+         slick: {
+             src: "./node_modules/slick-carousel/slick/**/*.scss",
+             dest:"./assets/scss/vendor/slick" 
+         },
+         fontAwesome: {
+             src: "./node_modules/font-awesome/scss/*.scss",
+             dest:"./assets/scss/vendor/font-awesome"
+         }
+       },
+       fonts: {
+         slick: {
+            src: "./node_modules/slick-carousel/slick/fonts/**/*",
+            dest:"./assets/fonts/vendor/slick"
+         },
+         fontAwesome: {
+            src: "./node_modules/font-awesome/fonts/**/*",
+            dest:"./assets/fonts/vendor/font-awesome"
+         }
+       }
     }
 }
 
@@ -76,18 +99,24 @@ function bootstrapSCSS() {
 
 function vendorSCSS() {
     return gulp
-                .src(["./node_modules/slick-carousel/slick/**/*.scss"])
-                .pipe(gulp.dest("./assets/scss/vendor/slick"));
+                .src([
+                    "./node_modules/slick-carousel/slick/**/*.scss",
+                    "./node_modules/font-awesome/scss/*.scss"
+                ])
+                .pipe(gulp.dest("./assets/scss/vendor/"));
 }
 
-function slickFonts() {
+function vendorFonts() {
     return gulp
-    .src(["./node_modules/slick-carousel/slick/fonts/**/*"])
-    .pipe(gulp.dest("./assets/fonts/vendor/slick/"));
+    .src([
+        "./node_modules/slick-carousel/slick/fonts/**/*",
+        "./node_modules/font-awesome/fonts/**/*"
+    ])
+    .pipe(gulp.dest("./assets/fonts/vendor/"));
 }
 
 //Vendor CSS build task
-const vendorBuild = gulp.series([bootstrapSCSS, vendorSCSS, vendorJS, slickFonts]);
+const vendorBuild = gulp.series([bootstrapSCSS, vendorSCSS, vendorJS, vendorFonts]);
 
 //Convert SCSS to CSS
 function convertSCSS() {
