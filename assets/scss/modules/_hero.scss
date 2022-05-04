@@ -1,0 +1,45 @@
+#hero {
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('../img/main-bcg.jpeg') center/cover;
+    height: 100vh;
+    margin-top: -6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: $white;
+
+    h1 {
+        font-size: 5.25rem;
+        letter-spacing: 5px;
+        font-weight: 700;
+
+        &.text-slanted {
+            font-family: 'Kaushan Script', cursive;
+          }
+    }
+
+    h3 {
+        font-size: 2.75rem;
+        margin: 1.5rem 0;
+    }
+
+    .hero-show-btn {
+        display: inline-block;
+        color: $white;
+        background: transparent;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid $white;
+        border-radius: $borderRadius;
+        transition: $transition;
+        text-transform: uppercase;
+
+        &:hover {
+            text-decoration: none;
+            background: $white;
+            color: $primary-500;
+        }
+    }
+
+}

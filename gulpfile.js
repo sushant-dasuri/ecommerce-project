@@ -13,6 +13,7 @@ const sourcemaps = require("gulp-sourcemaps");
 const del = require("del");
 const browserSync = require("browser-sync").create();
 
+
 //Create paths object
 let paths = {
     css: {
@@ -46,30 +47,10 @@ let paths = {
         src: "assets/fonts/**/*",
         dest: 'dist/assets/fonts'
     },
-    vendors: {
-       scss: {
-         slick: {
-             src: "./node_modules/slick-carousel/slick/**/*.scss",
-             dest:"./assets/scss/vendor/slick" 
-         },
-         fontAwesome: {
-             src: "./node_modules/font-awesome/scss/*.scss",
-             dest:"./assets/scss/vendor/font-awesome"
-         }
-       },
-       fonts: {
-         slick: {
-            src: "./node_modules/slick-carousel/slick/fonts/**/*",
-            dest:"./assets/fonts/vendor/slick"
-         },
-         fontAwesome: {
-            src: "./node_modules/font-awesome/fonts/**/*",
-            dest:"./assets/fonts/vendor/font-awesome"
-         }
-       }
-    }
 }
 
+//Vendors Array 
+let vendors = ["slick-carousel/slick", "font-awesome",  ]
 
 //Clean the dist folder task
 function clean (done) {
@@ -98,21 +79,19 @@ function bootstrapSCSS() {
 }
 
 function vendorSCSS() {
-    return gulp
-                .src([
-                    "./node_modules/slick-carousel/slick/**/*.scss",
-                    "./node_modules/font-awesome/scss/*.scss"
-                ])
-                .pipe(gulp.dest("./assets/scss/vendor/"));
+    return merge(vendors.map(function(vendor){
+        return gulp
+                .src('./node_modules' + vendor + '/scss/**/*.scss')
+                .pipe(gulp.dest("./assets/scss/vendor/" + vendor.replace(/\/.*/, '')));
+    }))
 }
 
 function vendorFonts() {
-    return gulp
-    .src([
-        "./node_modules/slick-carousel/slick/fonts/**/*",
-        "./node_modules/font-awesome/fonts/**/*"
-    ])
-    .pipe(gulp.dest("./assets/fonts/vendor/"));
+    return merge(vendors.map(function(vendor){
+        return gulp
+                .src('./node_modules' + vendor + '/scss/**/*.scss')
+                .pipe(gulp.dest("./assets/fonts/vendor/" + vendor.replace(/\/.*/, '')));
+    }))
 }
 
 //Vendor CSS build task

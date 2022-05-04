@@ -10,8 +10,9 @@
 
     .navbar-brand {
         position: absolute;
+        top: 50%;
         left: 50%;
-        transform: translate(-50%, 0%);
+        transform: translate(-50%, -50%);
     }
 
     .nav-item {
@@ -20,8 +21,13 @@
             color: $white;
             margin-right: 3rem;
             font-size: 1.25rem;
+            transition: $transition;
 
             &:hover {
+                color: $primary-500;
+            }
+
+            &:focus {
                 color: $primary-500;
             }
         }
