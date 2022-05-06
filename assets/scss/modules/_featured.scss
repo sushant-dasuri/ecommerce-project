@@ -1,0 +1,16 @@
+.section {
+    padding: 5rem 0rem;
+}
+
+.featured-title {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+
+    span {
+        color: $primary-500;
+        font-size: 0.95em;
+        margin-right: 1rem;
+    }
+}
