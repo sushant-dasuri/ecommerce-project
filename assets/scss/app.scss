@@ -1,11 +1,11 @@
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&family=Montserrat&family=Kaushan+Script&display=swap');
 
-// BOOTSTRAP OVERRIDES
-@import "utils/bs_overrides";
-
 // BOOTSTRAP AND ITS DEFAULT VARIABLES
 @import "bootstrap/bootstrap";
+
+// BOOTSTRAP OVERRIDES
+@import "utils/bs_overrides";
 
 // UTILS
 @import "utils/variables";

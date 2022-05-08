@@ -11,9 +11,13 @@
     color: $white;
 
     h1 {
-        font-size: 5.25rem;
+        font-size: 3rem;
         letter-spacing: 5px;
         font-weight: 700;
+
+        @include media-breakpoint-up(lg) {
+            font-size: 5.25rem;
+        }
 
         &.text-slanted {
             font-family: 'Kaushan Script', cursive;
@@ -21,8 +25,12 @@
     }
 
     h3 {
-        font-size: 2.75rem;
+        font-size: 1.4rem;
         margin: 1.5rem 0;
+
+        @include media-breakpoint-up(lg) {
+            font-size: 2.75rem;
+        }
     }
 
     .hero-show-btn {
