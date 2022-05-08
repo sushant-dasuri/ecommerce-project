@@ -16,4 +16,11 @@
     height: 95vh;
     right: 20px;
     padding: 4rem;
+
+    @include media-breakpoint-up(md) {
+       position: relative;
+       top: auto;
+       padding: initial;
+       background: transparent;
+    }
 }
