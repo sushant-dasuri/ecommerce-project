@@ -1,0 +1,25 @@
+
+.navbar-light .navbar-toggler-icon {
+        background-image: url("../img/toggler-white-icon.svg");
+        opacity: 1;
+}
+
+.navbar-collapse {
+    position: fixed;
+    top: 1rem;
+    background: $white;
+    width: 90vw;
+    left: auto;
+    color: black;
+    z-index: 11;
+    height: 95vh;
+    right: 20px;
+    padding: 4rem;
+
+    @include media-breakpoint-up(md) {
+       position: relative;
+       top: auto;
+       padding: initial;
+       background: transparent;
+    }
+}

@@ -81,9 +81,23 @@ body {
     object-fit: cover;
   }
 
+  .btn {
+    background: $primary-500;
+    color: $white;
+    border-radius: $borderRadius;
+    padding: 0.375rem 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: $letterSpacing;
+    display: inline-block;
+    transition: $transition;
+    border-color: transparent;
+    cursor: pointer;
+}
+
 // MODULES
 @import "modules/preloader";
 @import "modules/navigation";
+@import "modules/cart-overlay";
 @import "modules/hero";
 @import "modules/featured";
 @import "modules/footer";

@@ -4,11 +4,19 @@ const _featuredProducts = $(".product")
 const _productList = "assets/data/products.json";
 const _sidebarClose = $(".sidebar-close");
 const _navbarShowHide = $(".navbar-collapse");
+const _cartContainer = $(".toggle-container");
+const _cartButton = $(".cart-close");
+const _cartOverlay = $(".cart-overlay");
+const _cartItems = $(".cart-items");
+const _productContainer = $(".product");
 
 const app = {
     init() {
         app.productsLoad();
         app.closeSidebar();
+        app.cartShow();
+        app.cartHide();
+        app.addingItemsToCart();
     },
 
     productsLoad() {
@@ -51,17 +59,43 @@ const app = {
      _sidebarClose.on("click", function() {
         _navbarShowHide.removeClass("show").animate("slow");
      })
+   },
+
+   cartShow() {
+    _cartContainer.on('click', function() {
+        _cartOverlay.addClass("show");
+    })
+   },
+
+   cartHide() {
+     _cartButton.on("click", function() {
+      _cartOverlay.removeClass("show");
+     })
+   },
+
+   addingItemsToCart() {
+     $(_productContainer).on("click", function(event){
+       event.preventDefault();
+       console.log($(this));
+       let productTitle = $(this).find(".product-name");
+       let productPrice = $(this).find(".product-price");
+
+       console.log(productTitle.innerText, productPrice.innerTex);
+      let addToCartBtn = event.target.closest("button");
+     if( $(addToCartBtn).hasClass("product-cart-btn")) {
+       
+     }
+     })
    }
 }
 
 $(() => {
 	app.init();
-	console.log('Ecommerce Website');
 });
 
 
 $(window).on('load', function() {
-    _preloader.delay(2000).fadeOut('slow', function(){
+    _preloader.fadeOut('slow', function(){
 		_body.css({'overflow-y':'unset'});
 	});
 })
