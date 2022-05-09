@@ -12,6 +12,9 @@
         justify-content: center;
     }
 
+    .navbar-nav {
+        transition: $transition;
+    }
 
     .navbar-brand {
         position: absolute;
