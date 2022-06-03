@@ -16,7 +16,7 @@
     right: 20px;
     padding: 4rem;
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(lg) {
        position: relative;
        top: auto;
        padding: initial;

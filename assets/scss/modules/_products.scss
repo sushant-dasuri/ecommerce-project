@@ -1,0 +1,96 @@
+.products-list {
+    margin: 1rem 0rem;
+
+    .filters-container {
+        position: sticky;
+        top: 1rem;
+    }
+
+    .search-input {
+        padding: 0.5rem;
+        background: $grey-200;
+        border-radius: $borderRadius;
+        border-color: transparent;
+        letter-spacing: $letterSpacing;
+    }
+
+    h4 {
+        font-weight: 500;
+        margin: 1.5rem 0 0.5rem;
+    }
+
+    .company-btn {
+        display: block;
+        margin: 0.25em 0;
+        padding: 0.25rem;
+        text-transform: capitalize;
+        background: transparent;
+        border-color: transparent;
+        letter-spacing: $letterSpacing;
+        color: $grey-500;
+        cursor: pointer;
+        transition: $transition;
+        width: 150px;
+        text-align: left;
+
+        &:hover {
+            background: $primary-500;
+            color: $white;
+        }
+
+        &.active {
+            background: $primary-500;
+            color: $white;
+        }
+    }
+
+    .price-filter {
+        background: $grey-500 !important;
+        color: $grey-500;
+    }
+
+    p {
+        margin-bottom: 1.25rem;
+        color: $grey-500;
+    }
+
+    .products-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+
+        .product {
+            margin-bottom: 1rem;
+            width: 33%;
+        }
+    }
+
+    .product-container {
+        position: relative;
+        margin: 0rem 0.25rem;
+    }
+
+    
+
+    .product-name {
+        font-size: 0.85rem;
+        margin-bottom: 0.25rem;
+        text-transform: capitalize;
+        letter-spacing: $letterSpacing;
+        color: $grey-500;
+    }
+
+    .product-price {
+        font-size: 0.85rem;
+        margin: 0;
+        color: $grey-700;
+        font-weight: 700;
+    }
+
+    footer {
+        padding: 0.75rem 0;
+        text-align: center;
+    }
+}

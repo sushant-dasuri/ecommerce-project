@@ -99,5 +99,17 @@ header {
           color: $grey-500;
           cursor: pointer;
       }
+
+      &.alt-nav {
+          color: $grey-900;
+
+          .nav-link {
+            color: $grey-900;
+          }
+
+          .toggle-cart {
+              color: $grey-900;
+          }
+      }
 }
 

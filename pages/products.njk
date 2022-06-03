@@ -1,0 +1,20 @@
+{% set pageTitle = 'COMFY | PRODUCTS' %}
+{% set pageID = 'products' %}
+
+{% set linkTarget = '_blank' %}
+
+
+{% extends "../templates/layouts/layout_base.njk" %}
+
+{% block hero %}
+		{% include "../templates/partials/_sitemap.njk" %}
+{% endblock %}
+
+{% block main %}
+	{% include "../templates/partials/_products-list.njk" %}
+{% endblock %}
+
+
+
+
+

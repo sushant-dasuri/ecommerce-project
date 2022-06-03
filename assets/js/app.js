@@ -1,6 +1,9 @@
+//JQuery Module Pattern
+"use strict";
+
 const _body = $('body');
 const _preloader = $("#preloader");
-const _featuredProducts = $(".product")
+const _featuredProducts = $(".product");
 const _productList = "assets/data/products.json";
 const _sidebarClose = $(".sidebar-close");
 const _navbarShowHide = $(".navbar-collapse");
@@ -8,17 +11,17 @@ const _cartContainer = $(".toggle-container");
 const _cartButton = $(".cart-close");
 const _cartOverlay = $(".cart-overlay");
 const _cartItems = $(".cart-items");
-const _productContainer = $(".product");
 const _cartTotal = $(".cart-total");
 const _cartCount = $('.cart-item-count');
+const _productsContainer = document.querySelector(".products-container");
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let cartTotal = 0;
-
+let item = '';
 
 const app = {
     init() {
-        app.updateCartCount();
         app.productsLoad();
+        app.updateCartCount();
         app.closeSidebar();
         app.cartShow();
         app.cartHide();
@@ -27,6 +30,7 @@ const app = {
         app.modifyCartItems();
     },
 
+    // Load the Products JSON file 
     productsLoad() {
         $.ajax(_productList, {
             dataType: "json",
@@ -55,6 +59,36 @@ const app = {
                 </footer>
                   `
                 })
+
+                //For Products Page
+
+               if(_productsContainer !== (undefined || null)) {
+                for(let i = 0; i < response.length; i++) {
+                  let item = document.createElement("div");
+                  let  itemContent = `
+                  <div class="product-container">
+                  <img src="${response[i].src}" class="product-img img" alt="${response[i].name}">
+                 
+                  <div class="product-icons">
+                    <a href="product.html?id=${response[i].id}" class="product-icon">
+                      <i class="fa fa-search"></i>
+                    </a>
+                    <button class="product-cart-btn product-icon" data-id="${response[i].id}">
+                      <i class="fa fa-shopping-cart"></i>
+                    </button>
+                  </div>
+                </div>
+                <footer>
+                  <p class="product-name">${response[i].name}</p>
+                  <h4 class="product-price">$${response[i].price}</h4>
+                </footer>
+                  `
+                  item.className= "product";
+                  item.innerHTML = itemContent
+                  _productsContainer.appendChild(item);
+                 }
+                 console.log(_featuredProducts);
+               }
                 
             },
             error: function(request, errorMsg) {
@@ -63,48 +97,58 @@ const app = {
         }) 
     },
 
+    //Close Navbar Sidebar
    closeSidebar () {
      _sidebarClose.on("click", function() {
         _navbarShowHide.removeClass("show").animate("slow");
      })
    },
 
+   //Show Cart
    cartShow() {
     _cartContainer.on('click', function() {
         _cartOverlay.addClass("show");
     })
    },
 
+   //Hide Cart
    cartHide() {
      _cartButton.on("click", function() {
       _cartOverlay.removeClass("show");
      })
    },
 
+   //Add Items to the Cart
    addingItemsToCart() {
 
     cart.map((product) => {
       app.addingCartItemsToHtml(product);
     })
 
-     $(_productContainer).on("click", function(event){
+    let _container = $('#products-container');
+
+    //Listen Click on products or product Container
+     $(_container).add(_featuredProducts).on("click", function(event){
       event.preventDefault();
+      console.log(event.target);
       let addToCartBtn = event.target.closest("button");
-      let productId = this.querySelector(".product-cart-btn").getAttribute("data-id");
-      let productImageAlt = this.querySelector(".product-img").alt;
-      let productImageSrc = this.querySelector(".product-img").attributes.src.value;
-      let productTitle = this.querySelector(".product-name").innerHTML;
-      let productPrice = parseFloat(this.querySelector(".product-price").innerHTML.slice(1));
+      
+     //Delegate & check if the cart button is clicked
+     if( $(addToCartBtn).hasClass("product-cart-btn")) {
+      let that = addToCartBtn.closest('.product');
+      let productId = that.querySelector(".product-cart-btn").getAttribute("data-id");
+      let productImageAlt = that.querySelector(".product-img").alt;
+      let productImageSrc = that.querySelector(".product-img").attributes.src.value;
+      let productTitle = that.querySelector(".product-name").innerHTML;
+      let productPrice = parseFloat(that.querySelector(".product-price").innerHTML.slice(1));
       let productAmount = 1;
       let duplicateItem = cart.find(([item]) => item === productId);
-
-     
-     if( $(addToCartBtn).hasClass("product-cart-btn")) {
-
       _cartItems.empty();
 
+      //Check for duplicate item in cart
       if(duplicateItem) {
         duplicateItem[(duplicateItem.length)-1] += 1;
+        app.calculateCartItemsTotal();
       }
       else {
         cart.push([productId, productImageAlt, productImageSrc, productTitle, productPrice, productAmount]);
@@ -122,6 +166,7 @@ const app = {
      })
    },
 
+   // Add Cart Items to Html
    addingCartItemsToHtml(product) {
     let addedItem = `
     <div class="cart-item" data-id="${product[0]}">
@@ -148,6 +193,7 @@ _cartItems.append(cartContainer);
 
    },
 
+   // Add or Delete Cart Items
   modifyCartItems() {
 
     _cartItems.on('click', function(event) {
@@ -181,6 +227,7 @@ _cartItems.append(cartContainer);
     })
   },
 
+  // Remove Cart Items on remove button click
   removeCartItems(event) {
     let parent = event.target.closest(".cart-item");
     console.log(parent);
@@ -196,6 +243,7 @@ _cartItems.append(cartContainer);
     app.calculateCartItemsTotal();
   },
 
+  // Update Cart Count in Navbar Cart Icon
   updateCartCount() {
     let cartCount = 0;
     cart.map((item) => {
@@ -204,6 +252,7 @@ _cartItems.append(cartContainer);
     _cartCount.html(cartCount);
   },
 
+  //Calculate the Cart Total
   calculateCartItemsTotal() {
     cartTotal = 0;
    cart.map((item) => {
@@ -214,7 +263,9 @@ _cartItems.append(cartContainer);
    let totalContent = `Total : $${cartTotal}`;
    _cartTotal.html(totalContent);
    app.updateCartCount();
- },
+ }
+
+
   
 }
 

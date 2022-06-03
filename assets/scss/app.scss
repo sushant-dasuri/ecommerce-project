@@ -15,7 +15,6 @@
 // BASE
 
 body {
-    background: $grey-50;
     font-family: $bodyFont;
     font-weight: 400;
     line-height: 1.75;
@@ -99,5 +98,7 @@ body {
 @import "modules/navigation";
 @import "modules/cart-overlay";
 @import "modules/hero";
+@import "modules/sitemap";
+@import "modules/products";
 @import "modules/featured";
 @import "modules/footer";
