@@ -15,6 +15,7 @@ const _cartTotal = $(".cart-total");
 const _cartCount = $('.cart-item-count');
 const _productsContainer = document.querySelector(".products-container");
 const _productSearch = $('.search-input');
+const _searchEmpty = document.querySelector('.empty-search');
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let cartTotal = 0;
 let item = '';
@@ -274,9 +275,12 @@ _cartItems.append(cartContainer);
       productList.map((product)=> {
         product.closest('.product').classList.add('none');
       })
-      productList.filter((product) => {
+     if (productList.filter((product) => {
         return ((product.innerText.toLowerCase().indexOf(this.value.toLowerCase()) ) !== -1 ?  product.closest('.product').classList.remove('none') : '');
-      })
+      }) == 0) return _searchEmpty.classList.remove('none');
+      else {
+        _searchEmpty.classList.add('none');
+      }
     })
  }
 
