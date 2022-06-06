@@ -275,12 +275,12 @@ _cartItems.append(cartContainer);
       productList.map((product)=> {
         product.closest('.product').classList.add('none');
       })
-     if (productList.filter((product) => {
-        return ((product.innerText.toLowerCase().indexOf(this.value.toLowerCase()) ) !== -1 ?  product.closest('.product').classList.remove('none') : '');
-      }) == 0) return _searchEmpty.classList.remove('none');
-      else {
-        _searchEmpty.classList.add('none');
-      }
+     let filteredlist = productList.filter((product) => {
+        ((product.innerText.toLowerCase().indexOf(this.value.toLowerCase()) ) !== -1 ?  product.closest('.product').classList.remove('none') : '');
+        return (product.innerText.toLowerCase().indexOf(this.value.toLowerCase())) !== -1
+      })
+
+      filteredlist.length === 0 ? _searchEmpty.classList.remove('none') : _searchEmpty.classList.add('none');
     })
  }
 
