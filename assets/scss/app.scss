@@ -93,6 +93,14 @@ body {
     cursor: pointer;
 }
 
+.none {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
 // MODULES
 @import "modules/preloader";
 @import "modules/navigation";

@@ -14,6 +14,7 @@ const _cartItems = $(".cart-items");
 const _cartTotal = $(".cart-total");
 const _cartCount = $('.cart-item-count');
 const _productsContainer = document.querySelector(".products-container");
+const _productSearch = $('.search-input');
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let cartTotal = 0;
 let item = '';
@@ -28,6 +29,7 @@ const app = {
         app.addingItemsToCart();
         app.calculateCartItemsTotal();
         app.modifyCartItems();
+        app.productSearch();
     },
 
     // Load the Products JSON file 
@@ -259,10 +261,23 @@ _cartItems.append(cartContainer);
      let total = (item[item.length - 2]) * (item[item.length - 1]);
      cartTotal = Math.round((cartTotal + total) * 100) / 100;
      
-   } )
+   })
    let totalContent = `Total : $${cartTotal}`;
    _cartTotal.html(totalContent);
    app.updateCartCount();
+ },
+
+ productSearch() {
+    $(_productSearch).on('input', function(){
+      console.log(this.value);
+      let productList = Array.from(document.querySelectorAll('.product-name'));
+      productList.map((product)=> {
+        product.closest('.product').classList.add('none');
+      })
+      productList.filter((product) => {
+        return ((product.innerText.toLowerCase().indexOf(this.value.toLowerCase()) ) !== -1 ?  product.closest('.product').classList.remove('none') : '');
+      })
+    })
  }
 
 
