@@ -98,6 +98,11 @@ header {
           border: transparent;
           color: $grey-500;
           cursor: pointer;
+          display: block;
+
+          @include media-breakpoint-up(lg) {
+              display: none;
+          }
       }
 
       &.alt-nav {

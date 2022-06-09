@@ -13,8 +13,9 @@ const _cartOverlay = $(".cart-overlay");
 const _cartItems = $(".cart-items");
 const _cartTotal = $(".cart-total");
 const _cartCount = $('.cart-item-count');
-const _productsContainer = document.querySelector(".products-container");
+const _companyButtons = $('.company-btn')
 const _productSearch = $('.search-input');
+const _productsContainer = document.querySelector(".products-container-outer");
 const _searchEmpty = document.querySelector('.empty-search');
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let cartTotal = 0;
@@ -31,6 +32,7 @@ const app = {
         app.calculateCartItemsTotal();
         app.modifyCartItems();
         app.productSearch();
+        app.filterByCompanyName();
     },
 
     // Load the Products JSON file 
@@ -69,7 +71,7 @@ const app = {
                 for(let i = 0; i < response.length; i++) {
                   let item = document.createElement("div");
                   let  itemContent = `
-                  <div class="product-container">
+                  <div class="product-container" data-company="${response[i].company}">
                   <img src="${response[i].src}" class="product-img img" alt="${response[i].name}">
                  
                   <div class="product-icons">
@@ -275,16 +277,34 @@ _cartItems.append(cartContainer);
       productList.map((product)=> {
         product.closest('.product').classList.add('none');
       })
-     let filteredlist = productList.filter((product) => {
-        ((product.innerText.toLowerCase().indexOf(this.value.toLowerCase()) ) !== -1 ?  product.closest('.product').classList.remove('none') : '');
-        return (product.innerText.toLowerCase().indexOf(this.value.toLowerCase())) !== -1
+      let filteredCount = 0
+      productList.filter((product) => {
+       return ((product.innerText.toLowerCase().indexOf(this.value.toLowerCase()) ) !== -1 ?  (product.closest('.product').classList.remove('none'), filteredCount+=1) : '') === true;
+       
       })
 
-      filteredlist.length === 0 ? _searchEmpty.classList.remove('none') : _searchEmpty.classList.add('none');
+      filteredCount === 0 ? _searchEmpty.classList.remove('none') : _searchEmpty.classList.add('none');
     })
- }
+ },
+
+filterByCompanyName() {
+
+  $(_companyButtons).on('click', (e) => {
+    let that = e.target
+    $(that).addClass('active').siblings().removeClass('active');
+    let allproducts = Array.from(document.querySelectorAll('.product-container'));
+    let buttonValue = e.target.innerText.toLowerCase();
+    allproducts.filter((product) => {
+        product.parentElement.classList.contains('block') ? (product.parentElement.classList.remove('block'), product.parentElement.classList.add('none')) : product.parentElement.classList.add('none')
+        let productValue = product.getAttribute('data-company').replace(/\s/g, "").slice(2).toLowerCase();
+        return (buttonValue !== 'all' ?  productValue === buttonValue : product)
+    }).map((item) => {
+      item.parentElement.classList.add('block')
+    })
+  })
 
 
+}
   
 }
 
