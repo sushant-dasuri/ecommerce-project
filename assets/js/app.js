@@ -279,7 +279,7 @@ _cartItems.append(cartContainer);
       })
       let filteredCount = 0
       productList.filter((product) => {
-       return ((product.innerText.toLowerCase().indexOf(this.value.toLowerCase()) ) !== -1 ?  (product.closest('.product').classList.remove('none'), filteredCount+=1) : '') === true;
+       return ((product.innerText.toLowerCase().indexOf(this.value.toLowerCase()) ) !== -1 ?  (product.closest('.product').classList.remove('none'), filteredCount+=1) : '');
        
       })
 
