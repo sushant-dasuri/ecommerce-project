@@ -15,6 +15,8 @@ const _cartTotal = $(".cart-total");
 const _cartCount = $('.cart-item-count');
 const _companyButtons = $('.company-btn')
 const _productSearch = $('.search-input');
+const _priceRangeSelect = $('.price-filter');
+const _priceRangeValue = document.querySelector('.price-value');
 const _productsContainer = document.querySelector(".products-container-outer");
 const _searchEmpty = document.querySelector('.empty-search');
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -33,6 +35,7 @@ const app = {
         app.modifyCartItems();
         app.productSearch();
         app.filterByCompanyName();
+        app.priceRangeSelector();
     },
 
     // Load the Products JSON file 
@@ -275,7 +278,7 @@ _cartItems.append(cartContainer);
       console.log(this.value);
       let productList = Array.from(document.querySelectorAll('.product-name'));
       productList.map((product)=> {
-        product.closest('.product').classList.add('none');
+        product.closest('.product').classList.contains('block') ? (product.closest('.product').classList.remove('block'), product.closest('.product').classList.add('none')) : product.closest('.product').classList.add('none');
       })
       let filteredCount = 0
       productList.filter((product) => {
@@ -284,6 +287,7 @@ _cartItems.append(cartContainer);
       })
 
       filteredCount === 0 ? _searchEmpty.classList.remove('none') : _searchEmpty.classList.add('none');
+      app.filterByCompanyName();
     })
  },
 
@@ -304,6 +308,20 @@ filterByCompanyName() {
   })
 
 
+},
+
+priceRangeSelector() {
+  let allItems = [...(document.querySelectorAll('.product-name'))];
+  _priceRangeValue.innerHTML = `Value : $${_priceRangeSelect.val()}`
+  $(_priceRangeSelect).on('input change', (e) => {
+    let value = e.target.value;
+    let textContent = `Value : $${value}`;
+    _priceRangeValue.innerHTML = textContent;
+    allItems.filter((el) => {
+      
+    })
+   
+  })  
 }
   
 }
