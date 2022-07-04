@@ -276,9 +276,10 @@ _cartItems.append(cartContainer);
  productSearch() {
     $(_productSearch).on('input', function(){
       console.log(this.value);
+     
       let productList = Array.from(document.querySelectorAll('.product-name'));
       productList.map((product)=> {
-        product.closest('.product').classList.contains('block') ? (product.closest('.product').classList.remove('block'), product.closest('.product').classList.add('none')) : product.closest('.product').classList.add('none');
+        !product.closest('.product').classList.contains('none') ? product.closest('.product').classList.add('none') : '';
       })
       let filteredCount = 0
       productList.filter((product) => {
@@ -287,7 +288,9 @@ _cartItems.append(cartContainer);
       })
 
       filteredCount === 0 ? _searchEmpty.classList.remove('none') : _searchEmpty.classList.add('none');
-      app.filterByCompanyName();
+      if(this.value == '') {
+        $(".company-btn.active").trigger('click');
+      }
     })
  },
 
@@ -299,11 +302,11 @@ filterByCompanyName() {
     let allproducts = Array.from(document.querySelectorAll('.product-container'));
     let buttonValue = e.target.innerText.toLowerCase();
     allproducts.filter((product) => {
-        product.parentElement.classList.contains('block') ? (product.parentElement.classList.remove('block'), product.parentElement.classList.add('none')) : product.parentElement.classList.add('none')
+        !product.parentElement.classList.contains('none') ? product.parentElement.classList.add('none') : '';
         let productValue = product.getAttribute('data-company').replace(/\s/g, "").slice(2).toLowerCase();
         return (buttonValue !== 'all' ?  productValue === buttonValue : product)
     }).map((item) => {
-      item.parentElement.classList.add('block')
+      item.parentElement.classList.remove('none');
     })
   })
 
@@ -311,16 +314,21 @@ filterByCompanyName() {
 },
 
 priceRangeSelector() {
-  let allItems = [...(document.querySelectorAll('.product-name'))];
   _priceRangeValue.innerHTML = `Value : $${_priceRangeSelect.val()}`
   $(_priceRangeSelect).on('input change', (e) => {
-    let value = e.target.value;
+    let allItems = [...(document.querySelectorAll('.product-price'))];
+    let value = parseFloat(e.target.value);
     let textContent = `Value : $${value}`;
     _priceRangeValue.innerHTML = textContent;
-    allItems.filter((el) => {
-      
+    let filteredItems = allItems.filter((el) => {
+      el.closest('.product').classList.add('none');
+      let elValue = parseFloat((el.innerHTML).replace('$', ''));
+       if(elValue <= value && value > 6) return el;
     })
-   
+    filteredItems.map((product) => {
+      product.closest('.product').classList.remove('none');
+    })
+    filteredItems.length === 0 ? _searchEmpty.classList.remove('none') : _searchEmpty.classList.add('none');
   })  
 }
   
