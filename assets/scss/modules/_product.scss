@@ -1,0 +1,49 @@
+.single-product-image {
+    height: 25rem;
+    border-radius: $borderRadius;
+    object-fit: cover;
+    width: 100%;
+}
+
+.single-product-container {
+    width: 100%;
+    margin-left: 1rem;
+}
+
+.single-product-title {
+    margin-bottom: 0.75rem;
+}
+
+.single-product-price {
+    color: $grey-600;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.single-product-company {
+    font-size: 1.2rem;
+    color: $grey-400;
+    text-transform: uppercase;
+    letter-spacing: $letterSpacing;
+    margin-bottom: 1.25rem;
+}
+
+.text-slanted {
+    font-family: 'Kaushan Script', cursive;
+}
+
+.single-product-desc {
+    max-width: 25em;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    color: $grey-600;
+}
+
+.product-color {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #222;
+    margin: 0.5rem 0.5rem 1.5rem 0;
+}

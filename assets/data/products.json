@@ -4,12 +4,12 @@
     "price" : 9.99,
     "src" : "assets/img/high-back-bench.jpeg",
     "company" : "BY IKEA",
-    "product-colors" : [
+    "product_colors" : [
         {
-            "color-1" : "background-color: rgb(241, 80, 37);"
+            "color_1" : "rgb(241, 80, 37)"
         },
         {
-            "color-2" : "background-color: rgb(34, 34, 34);"
+            "color_2" : "rgb(34, 34, 34)"
         }],
     "description" : "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge"
     
@@ -20,13 +20,13 @@
     "price" : 79.99,
     "src" : "assets/img/albany-table.jpeg",
     "company" : "BY MARCOS",
-    "product-colors" : [
+    "product_colors" : [
         {
-            "color-1" : "background-color: rgb(241, 80, 37);"
+            "color_1" : "rgb(241, 80, 37)"
          
         },
         {
-            "color-2" : "background-color: rgb(34, 34, 34);"
+            "color_2" : "rgb(34, 34, 34)"
         }],
     "description" : "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge"
     
@@ -37,15 +37,15 @@
     "price" : 25.99,
     "src" : "assets/img/accent-chair.jpeg",
     "company" : "BY CARESSA",
-    "product-colors" : [
+    "product_colors" : [
         {
-            "color-1" : "background-color: rgb(34, 34, 34);"
+            "color_1" : "rgb(34, 34, 34)"
         },
         {
-            "color-2" : "background-color: rgb(0, 0, 255);"
+            "color_2" : "rgb(0, 0, 255)"
         },
         {
-            "color-3" : "background-color: rgb(241, 80, 37);"
+            "color-3" : "rgb(241, 80, 37)"
         }],
     "description" : "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge"
     
@@ -56,12 +56,12 @@
     "price" : 45.99,
     "src" : "assets/img/wooden-table.jpeg",
     "company" : "BY CARESSA",
-    "product-colors" : [
+    "product_colors" : [
         {
-            "color-1" : "background-color: rgb(241, 80, 37);"
+            "color_1" : "rgb(241, 80, 37)"
         },
         {
-            "color-2" : "background-color: rgb(0, 0, 255);"
+            "color_2" : "rgb(0, 0, 255)"
         }],
     "description" : "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge"
     
@@ -72,12 +72,12 @@
     "price" : 6.99,
     "src" : "assets/img/dining-table.jpeg",
     "company" : "BY CARESSA",
-    "product-colors" : [
+    "product_colors" : [
         {
-            "color-1" : "background-color: rgb(255, 0, 0);"
+            "color_1" : "rgb(255, 0, 0)"
         },
         {
-            "color-2" : "background-color: rgb(241, 80, 37);"
+            "color_2" : "rgb(241, 80, 37)"
         }],
     "description" : "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge"
     
@@ -88,9 +88,9 @@
     "price" : 69.99,
     "src" : "assets/img/sofa-set.jpeg",
     "company" : "BY LIDDY",
-    "product-colors" : [
+    "product_colors" : [
         {
-           "color-1" : "background-color: rgb(0, 0, 255);"
+           "color_1" : "rgb(0, 0, 255)"
         }],
     "description" : "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge"
     
@@ -101,16 +101,16 @@
     "price" : 8.99,
     "src" : "assets/img/mordern-bookshelf.jpeg",
     "company" : "BY MARCOS",
-    "product-colors" : [
+    "product_colors" : [
         {
-            "color-1" : "background-color: rgb(0, 255, 0);"
+            "color_1" : "rgb(0, 255, 0)"
         },
         {
-            "color-2" : "background-color: rgb(241, 80, 37);"
+            "color_2" : "rgb(241, 80, 37)"
            
         },
         {
-            "color-3" : "background-color: rgb(255, 0, 0);"
+            "color-3" : "rgb(255, 0, 0)"
         }],
     "description" : "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge"
     
@@ -121,9 +121,9 @@
     "price" : 21.99,
     "src" : "assets/img/emperor-bed.jpeg",
     "company" : "BY LIDDY",
-    "product-colors" : [
+    "product_colors" : [
         {
-           "color-1" : "background-color: rgb(241, 80, 37);"
+           "color_1" : "rgb(241, 80, 37)"
         }],
     "description" : "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge"
     
@@ -134,13 +134,13 @@
     "price" : 39.95,
     "src" : "assets/img/utopia-sofa.jpeg",
     "company" : "BY MARCOS",
-    "product-colors" : [
+    "product_colors" : [
         {
-           "color-1" : "background-color: rgb(0, 255, 0);"
+           "color_1" : "rgb(0, 255, 0)"
           
         },
         {
-            "color-2" : "background-color: rgb(0, 0, 255);"
+            "color_2" : "rgb(0, 0, 255)"
         }],
     "description" : "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge"
     
@@ -151,12 +151,12 @@
     "price" : 29.98,
     "src" : "assets/img/entertainment-center.jpeg",
     "company" : "BY LIDDY",
-    "product-colors" : [
+    "product_colors" : [
         {
-            "color-1" : "background-color: rgb(255, 0, 0);"
+            "color_1" : "rgb(255, 0, 0)"
         },
         {
-            "color-2" : "background-color: rgb(0, 255, 0);"
+            "color_2" : "rgb(0, 255, 0)"
         }],
     "description" : "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge"
     
@@ -167,12 +167,12 @@
     "price" : 10.99,
     "src" : "assets/img/albany-sectional.jpeg",
     "company" : "BY IKEA",
-    "product-colors" : [
+    "product_colors" : [
         {
-            "color-1" : "background-color: rgb(0, 255, 0);"
+            "color_1" : "rgb(0, 255, 0)"
         },
         {
-            "color-2" : "background-color: rgb(255, 0, 0);"
+            "color_2" : "rgb(255, 0, 0)"
         }],
     "description" : "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge"
     
@@ -183,9 +183,9 @@
     "price" : 9.99,
     "src" : "assets/img/leather-sofa.jpeg",
     "company" : "BY LIDDY",
-    "product-colors" : [
+    "product_colors" : [
         {
-           "color-1" : "background-color: rgb(34, 34, 34);"
+           "color_1" : "rgb(34, 34, 34)"
         }],
     "description" : "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge"
     

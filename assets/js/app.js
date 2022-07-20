@@ -19,6 +19,7 @@ const _priceRangeSelect = $('.price-filter');
 const _priceRangeValue = document.querySelector('.price-value');
 const _productsContainer = document.querySelector(".products-container-outer");
 const _searchEmpty = document.querySelector('.empty-search');
+let pageTitle = document.querySelector('.page-hero-title');
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let cartTotal = 0;
 let item = '';
@@ -35,7 +36,6 @@ const app = {
         app.modifyCartItems();
         app.productSearch();
         app.filterByCompanyName();
-        app.priceRangeSelector();
     },
 
     // Load the Products JSON file 
@@ -44,8 +44,8 @@ const app = {
             dataType: "json",
             method: "GET",
             success: function(response) {
-
-                // For Home Page Content
+                localStorage.setItem('data', JSON.stringify(response));
+                // For Home Page Content  
                 _featuredProducts.map((i, product) => {
                    
                   return product.innerHTML = `
@@ -53,7 +53,7 @@ const app = {
                   <img src="${response[i].src}" class="product-img img" alt="${response[i].name}">
                  
                   <div class="product-icons">
-                    <a href="product.html?id=${response[i].id}" class="product-icon">
+                    <a href="product.html?id=${response[i].id}" class="product-icon product-details"  data-id="${response[i].id}">
                       <i class="fa fa-search"></i>
                     </a>
                     <button class="product-cart-btn product-icon" data-id="${response[i].id}">
@@ -78,7 +78,7 @@ const app = {
                   <img src="${response[i].src}" class="product-img img" alt="${response[i].name}">
                  
                   <div class="product-icons">
-                    <a href="product.html?id=${response[i].id}" class="product-icon">
+                    <a href="product.html?id=${response[i].id}" class="product-icon product-details" data-id="${response[i].id}">
                       <i class="fa fa-search"></i>
                     </a>
                     <button class="product-cart-btn product-icon" data-id="${response[i].id}">
@@ -138,12 +138,11 @@ const app = {
     //Listen Click on products or product Container
      $(_container).add(_featuredProducts).on("click", function(event){
       event.preventDefault();
-      console.log(event.target);
-      let addToCartBtn = event.target.closest("button");
+      let buttonClicked = event.target.closest("button") || event.target.closest('a');
       
      //Delegate & check if the cart button is clicked
-     if( $(addToCartBtn).hasClass("product-cart-btn")) {
-      let that = addToCartBtn.closest('.product');
+     if( $(buttonClicked).hasClass("product-cart-btn")) {
+      let that = buttonClicked.closest('.product');
       let productId = that.querySelector(".product-cart-btn").getAttribute("data-id");
       let productImageAlt = that.querySelector(".product-img").alt;
       let productImageSrc = that.querySelector(".product-img").attributes.src.value;
@@ -171,6 +170,12 @@ const app = {
           app.addingCartItemsToHtml(product);
         })
      }
+       else if(($(buttonClicked).hasClass("product-details"))) {
+          let id = buttonClicked.getAttribute('data-id')
+          sessionStorage.setItem('id', JSON.stringify(id));
+          window.open('/product.html?id='+ id, '_self')
+         
+        }
      })
    },
 
@@ -330,6 +335,45 @@ priceRangeSelector() {
     })
     filteredItems.length === 0 ? _searchEmpty.classList.remove('none') : _searchEmpty.classList.add('none');
   })  
+},
+
+singleProductDetails() {
+  let productId = JSON.parse(sessionStorage.getItem('id'));
+    let data = JSON.parse(localStorage.getItem('data'));
+    Object.keys(data).forEach((key) => {
+     if(Object.values(data[key]).includes(productId)) {
+      let singleProductTitle = document.querySelector('.single-product-title');
+      let singleProductCompany = document.querySelector('.single-product-company');
+      let singleProductPrice = document.querySelector('.single-product-price');
+      let singleProductColors = document.querySelector('.single-product-colors');
+      let singleProductDescription = document.querySelector('.single-product-desc');
+      let singleProductImage = document.querySelector('.single-product-image');
+   
+       pageTitle.innerHTML = `HOME / ${data[key].name}`;
+       singleProductTitle.innerHTML = data[key].name;
+       singleProductCompany.innerHTML = data[key].company;
+       singleProductPrice.innerHTML = `$${data[key].price}`;
+       singleProductDescription.innerHTML = data[key].description;
+       singleProductImage.src = data[key].src;
+        if(data[key].product_colors.length !== 1) {
+          let span1 = document.createElement("span");
+          let span2 = document.createElement("span");
+          span1.style.backgroundColor = data[key].product_colors[0].color_1;
+          span1.classList.add('product-color');
+          span2.style.backgroundColor = data[key].product_colors[1].color_2;
+          span2.classList.add('product-color');
+          singleProductColors.appendChild(span1);
+          singleProductColors.appendChild(span2);
+        }
+
+        else {
+          let span1 = document.createElement("span");
+          span1.style.backgroundColor = data[key].product_colors[0].color_1;
+          span1.classList.add('product-color');
+          singleProductColors.appendChild(span1);
+        }
+     }
+    })
 }
   
 }
@@ -342,6 +386,9 @@ $(() => {
 
 
 $(window).on('load', function() {
+  let path = window.location.pathname;
+  let page = path.split("/").pop();
+  page === 'product.html' ? app.singleProductDetails() : '';
     _preloader.fadeOut('slow', function(){
 		_body.css({'overflow-y':'unset'});
 	});
