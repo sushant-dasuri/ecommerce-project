@@ -95,7 +95,6 @@ const app = {
                   item.innerHTML = itemContent
                   _productsContainer.appendChild(item);
                  }
-                 console.log(_featuredProducts);
                }
                 
             },
@@ -141,13 +140,33 @@ const app = {
       let buttonClicked = event.target.closest("button") || event.target.closest('a');
       
      //Delegate & check if the cart button is clicked
-     if( $(buttonClicked).hasClass("product-cart-btn")) {
-      let that = buttonClicked.closest('.product');
-      let productId = that.querySelector(".product-cart-btn").getAttribute("data-id");
-      let productImageAlt = that.querySelector(".product-img").alt;
-      let productImageSrc = that.querySelector(".product-img").attributes.src.value;
-      let productTitle = that.querySelector(".product-name").innerHTML;
-      let productPrice = parseFloat(that.querySelector(".product-price").innerHTML.slice(1));
+     if( $(buttonClicked).hasClass("product-cart-btn")|| $(buttonClicked).hasClass("addToCartBtn")) {
+      let productId = "";
+      let productImageAlt = "";
+      let productImageSrc = "";
+      let productTitle = "";
+      let productPrice = "";
+       if(buttonClicked.classList.contains("product-cart-btn")) {
+        let that = buttonClicked.closest('.product');
+        productId = that.querySelector(".product-cart-btn").getAttribute("data-id");
+        productImageAlt = that.querySelector(".product-img").alt;
+        productImageSrc = that.querySelector(".product-img").attributes.src.value;
+        productTitle = that.querySelector(".product-name").innerHTML;
+        productPrice = parseFloat(that.querySelector(".product-price").innerHTML.slice(1));
+       }
+
+       else {
+        let container = buttonClicked.closest(".single-product-container");
+        let singleProductName = container.querySelector(".single-product-title");
+        let singleProductPrice = container.querySelector(".single-product-price");
+        let singleProductImage = container.querySelector(".single-product-image");
+        productId = buttonClicked.getAttribute('data-id');
+        productImageAlt = singleProductImage.alt;
+        productImageSrc = singleProductImage.attributes.src.value;
+        productTitle = singleProductName.innerHTML;
+        productPrice = parseFloat(singleProductPrice.innerHTML.slice(1));
+       }
+      
       let productAmount = 1;
       let duplicateItem = cart.find(([item]) => item === productId);
       _cartItems.empty();
@@ -163,7 +182,6 @@ const app = {
         app.calculateCartItemsTotal();
       }
 
-      console.log(cart.length);
       localStorage.setItem('cart', JSON.stringify(cart));
      
         cart.map((product) => {
@@ -243,11 +261,9 @@ _cartItems.append(cartContainer);
   // Remove Cart Items on remove button click
   removeCartItems(event) {
     let parent = event.target.closest(".cart-item");
-    console.log(parent);
     parent.remove();
     cart.map((item, index) => {
        if(item[0] === parent.getAttribute('data-id')) {
-        console.log(cart[index]);
         cart.splice(index, 1);
         
        }
@@ -280,7 +296,6 @@ _cartItems.append(cartContainer);
 
  productSearch() {
     $(_productSearch).on('input', function(){
-      console.log(this.value);
      
       let productList = Array.from(document.querySelectorAll('.product-name'));
       productList.map((product)=> {
@@ -348,13 +363,15 @@ singleProductDetails() {
       let singleProductColors = document.querySelector('.single-product-colors');
       let singleProductDescription = document.querySelector('.single-product-desc');
       let singleProductImage = document.querySelector('.single-product-image');
-   
+      let singleProductButton = document.querySelector('.addToCartBtn');
        pageTitle.innerHTML = `HOME / ${data[key].name}`;
        singleProductTitle.innerHTML = data[key].name;
        singleProductCompany.innerHTML = data[key].company;
        singleProductPrice.innerHTML = `$${data[key].price}`;
        singleProductDescription.innerHTML = data[key].description;
        singleProductImage.src = data[key].src;
+       singleProductImage.alt = data[key].name;
+       singleProductButton.setAttribute('data-id', data[key].id)
         if(data[key].product_colors.length !== 1) {
           let span1 = document.createElement("span");
           let span2 = document.createElement("span");
