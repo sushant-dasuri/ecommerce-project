@@ -1,0 +1,15 @@
+{% set pageTitle = 'COMFY | ABOUT' %}
+{% set pageID = 'about' %}
+{% set sitemapTitle = 'Home / About' %}
+{% set linkTarget = '_blank' %}
+
+
+{% extends "../templates/layouts/layout_base.njk" %}
+
+{% block hero %}
+		{% include "../templates/partials/_sitemap.njk" %}
+{% endblock %}
+
+{% block main %}
+	{% include "../templates/partials/_about.njk" %}
+{% endblock %}
