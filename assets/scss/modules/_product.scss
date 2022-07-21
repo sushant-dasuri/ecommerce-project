@@ -1,4 +1,5 @@
 .single-product-image {
+    width: 48%;
     height: 25rem;
     border-radius: $borderRadius;
     object-fit: cover;
@@ -8,7 +9,12 @@
     width: 100%;
     margin-left: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+}
+
+.single-product-info {
+    width: 48%;
+    margin-left: 2rem;
 }
 
 .single-product-title {
