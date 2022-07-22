@@ -1,5 +1,9 @@
 .section {
-    padding: 6rem 0rem;
+        padding: 2rem 0rem;
+
+    @include media-breakpoint-up(md) {
+        padding: 4rem 0rem;
+    }
 }
 
 .featured-title {

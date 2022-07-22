@@ -1,8 +1,19 @@
+.alt-nav .navbar-toggler-icon.default-icon {
+    background-image: url("../img/toggler-black-icon.svg");
+    opacity: 1;
+}
 
-.navbar-light .navbar-toggler-icon {
+.navbar-light .navbar-toggler-icon.icon {
         background-image: url("../img/toggler-white-icon.svg");
         opacity: 1;
 }
+
+.collapse:not(.show) {
+    display: none;
+    height: auto;
+}
+
+
 
 .navbar-collapse {
     position: fixed;
