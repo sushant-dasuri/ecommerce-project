@@ -36,6 +36,7 @@ const app = {
         app.modifyCartItems();
         app.productSearch();
         app.filterByCompanyName();
+        app.priceRangeSelector();
     },
 
     // Load the Products JSON file 
@@ -178,9 +179,10 @@ const app = {
       }
       else {
         cart.push([productId, productImageAlt, productImageSrc, productTitle, productPrice, productAmount]);
-        _cartOverlay.addClass("show");
         app.calculateCartItemsTotal();
       }
+
+      _cartOverlay.addClass("show");
 
       localStorage.setItem('cart', JSON.stringify(cart));
      
