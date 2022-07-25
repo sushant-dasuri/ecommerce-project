@@ -38,7 +38,7 @@
         width: 100%;
         text-align: left;
 
-        &:hover {
+        &:hover,  &.hover_effect {
             background: $primary-500;
             color: $white;
         }

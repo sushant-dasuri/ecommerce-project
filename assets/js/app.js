@@ -6,6 +6,8 @@ const _preloader = $("#preloader");
 const _featuredProducts = $(".product");
 const _productList = "assets/data/products.json";
 const _sidebarClose = $(".sidebar-close");
+const _navbar = $(".navbar");
+const _navbarToggler = $(".navbar-toggler");
 const _navbarShowHide = $(".navbar-collapse");
 const _cartContainer = $(".toggle-container");
 const _cartButton = $(".cart-close");
@@ -29,6 +31,7 @@ const app = {
         app.productsLoad();
         app.updateCartCount();
         app.closeSidebar();
+        app.bodyOverlay();
         app.cartShow();
         app.cartHide();
         app.addingItemsToCart();
@@ -36,7 +39,6 @@ const app = {
         app.modifyCartItems();
         app.productSearch();
         app.filterByCompanyName();
-        app.priceRangeSelector();
     },
 
     // Load the Products JSON file 
@@ -54,10 +56,10 @@ const app = {
                   <img src="${response[i].src}" class="product-img img" alt="${response[i].name}">
                  
                   <div class="product-icons">
-                    <a href="product.html?id=${response[i].id}" class="product-icon product-details"  data-id="${response[i].id}">
+                    <a href="product.html?id=${response[i].id}" class="product-icon hover product-details"  data-id="${response[i].id}">
                       <i class="fa fa-search"></i>
                     </a>
-                    <button class="product-cart-btn product-icon" data-id="${response[i].id}">
+                    <button class="product-cart-btn product-icon hover" data-id="${response[i].id}">
                       <i class="fa fa-shopping-cart"></i>
                     </button>
                   </div>
@@ -79,10 +81,10 @@ const app = {
                   <img src="${response[i].src}" class="product-img img" alt="${response[i].name}">
                  
                   <div class="product-icons">
-                    <a href="product.html?id=${response[i].id}" class="product-icon product-details" data-id="${response[i].id}">
+                    <a href="product.html?id=${response[i].id}" class="product-icon hover product-details" data-id="${response[i].id}">
                       <i class="fa fa-search"></i>
                     </a>
-                    <button class="product-cart-btn product-icon" data-id="${response[i].id}">
+                    <button class="product-cart-btn product-icon hover" data-id="${response[i].id}">
                       <i class="fa fa-shopping-cart"></i>
                     </button>
                   </div>
@@ -105,10 +107,19 @@ const app = {
         }) 
     },
 
+    //Add Overlay to body and stop scroll when navbar is collapsed
+    bodyOverlay() {
+     _navbarToggler.on("click", (e) => {
+       e.preventDefault();
+       _body.addClass("overlay");
+     })
+    },
+
     //Close Navbar Sidebar
    closeSidebar () {
      _sidebarClose.on("click", function() {
         _navbarShowHide.removeClass("show").animate("slow");
+        _body.removeClass("overlay");
      })
    },
 
@@ -408,6 +419,7 @@ $(window).on('load', function() {
   let path = window.location.pathname;
   let page = path.split("/").pop();
   page === 'product.html' ? app.singleProductDetails() : '';
+  page === 'products.html' ? app.priceRangeSelector() : '';
     _preloader.fadeOut('slow', function(){
 		_body.css({'overflow-y':'unset'});
 	});

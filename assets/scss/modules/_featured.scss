@@ -90,14 +90,14 @@
             align-items: center;
             justify-content: center;
 
-            &:hover {
+            &:hover,  &.hover_effect {
                 background: $primary-700;
                 text-decoration: none;
             }
         }
     }
 
-    &:hover {
+    &:hover,  &.hover_effect {
         .product-icons {
             opacity: 1;
         }
