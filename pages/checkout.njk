@@ -1,0 +1,16 @@
+{% set pageTitle = 'COMFY | CHECKOUT' %}
+{% set pageID = 'products' %}
+{% set sitemapTitle = 'Home / Checkout' %}
+
+{% set linkTarget = '_blank' %}
+
+
+{% extends "../templates/layouts/layout_base.njk" %}
+
+{% block hero %}
+		{% include "../templates/partials/_sitemap.njk" %}
+{% endblock %}
+
+{% block main %}
+	{% include "../templates/partials/_checkout.njk" %}
+{% endblock %}

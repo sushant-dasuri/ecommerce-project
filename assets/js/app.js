@@ -15,13 +15,19 @@ const _cartOverlay = $(".cart-overlay");
 const _cartItems = $(".cart-items");
 const _cartTotal = $(".cart-total");
 const _cartCount = $('.cart-item-count');
-const _companyButtons = $('.company-btn')
+const _cartCheckout = $('.cart-checkout');
+const _companyButtons = $('.company-btn');
 const _productSearch = $('.search-input');
 const _priceRangeSelect = $('.price-filter');
+const _cardDiv = $(".e-money");
+const _CODDiv = $(".cash-on-delivery");
 const _priceRangeValue = document.querySelector('.price-value');
 const _productsContainer = document.querySelector(".products-container-outer");
 const _searchEmpty = document.querySelector('.empty-search');
+const _checkoutTotalSpan = document.querySelector('.total-span');
+const _checkoutFinalTotalSpan = document.querySelector('.final-total-span');
 let pageTitle = document.querySelector('.page-hero-title');
+let updateCheckoutList = document.querySelector('.cart-list');
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let cartTotal = 0;
 let item = '';
@@ -39,6 +45,8 @@ const app = {
         app.modifyCartItems();
         app.productSearch();
         app.filterByCompanyName();
+        app.cashOnDeliveryToggle();
+        app.updateCheckout();
     },
 
     // Load the Products JSON file 
@@ -135,6 +143,22 @@ const app = {
      _cartButton.on("click", function() {
       _cartOverlay.removeClass("show");
      })
+   },
+
+   //Show Hide Cash on Delivery
+
+   cashOnDeliveryToggle() {
+    $('input[type=radio]').on("click", function() {
+      if($('.card-radio:checked').length > 0) {
+        _cardDiv.removeClass("none");
+        _CODDiv.addClass("none");
+      }
+ 
+      else {
+        _cardDiv.addClass("none");
+        _CODDiv.removeClass("none");
+      }
+    })
    },
 
    //Add Items to the Cart
@@ -404,7 +428,40 @@ singleProductDetails() {
         }
      }
     })
-}
+},
+
+//Update checkout page summary
+
+updateCheckout() {
+  let checkoutData = JSON.parse(localStorage.getItem('cart'));
+  let checkoutTotal = 0;
+  checkoutData.map((cart) => {
+    let li = document.createElement("li");
+    li.innerHTML = `
+    <div class="checkout-img"><img src="${cart[2]}" alt="${cart[3]}" /></div>
+      <div class="item-details">
+      <span>
+      ${cart[1]}
+      </span>
+      <span>
+      ${cart[5]}
+      </span>
+      <p class="item-price">
+        $${cart[4]}
+      </p>
+    </div>
+    `
+    updateCheckoutList.appendChild(li);
+
+    let total = (cart[4] * cart[5])
+   checkoutTotal += total;
+   console.log(checkoutTotal);
+  })
+  _checkoutTotalSpan.innerHTML = `<b>$${checkoutTotal}</b>`;
+  _checkoutFinalTotalSpan.innerHTML = `<b>$${checkoutTotal + 50}</b>`;
+},
+
+
   
 }
 

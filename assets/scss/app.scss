@@ -109,11 +109,11 @@ body {
 }
 
 .none {
-  display: none;
+  display: none !important;
 }
 
 .block {
-  display: block;
+  display: block !important;
 }
 
 .hover {
@@ -146,4 +146,5 @@ body {
 @import "modules/product";
 @import "modules/about";
 @import "modules/featured";
+@import "modules/checkout";
 @import "modules/footer";

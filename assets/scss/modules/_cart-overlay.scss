@@ -52,6 +52,15 @@
             width: 75%;
             margin: 0 auto;
             margin-bottom: 3rem;
+
+            a {
+                color: $white;
+
+                &:hover {
+                    color: $white;
+                    text-decoration: none;
+                }
+            }
         }
 
         .text-slanted {

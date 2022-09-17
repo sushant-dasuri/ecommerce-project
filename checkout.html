@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="favicon.ico" />
+
+    <title>COMFY | CHECKOUT</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/vendor/font-awesome.css">
+
+    <!-- build:css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css">
+    <!-- endbuild -->
+</head>
+
+<body>
+    <!--Pre Loader -->
+    <div id="preloader">
+        <div class="container preloader-container">
+            <div class="dot dot-1"></div>
+            <div class="dot dot-2"></div>
+            <div class="dot dot-3"></div>
+        </div>
+    </div>
+
+    <!--header-->
+    <header id="header" class="js-reveal">
+        <!--Navbar-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-expand-lg alt-nav">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon default-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                                <!--close button-->
+                                <button class="sidebar-close">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="home.html">
+                                        <i class="fa fa-home fa-fw"></i>
+                                        Home
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="products.html">
+                                        <i class="fa fa-bed fa-fw"></i>
+                                        Products
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="about.html">
+                                        <i class="fa fa-book fa-fw"></i>
+                                        About
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="navbar-brand" href="#">
+                            <img src="../../assets/img/logo-black.svg" alt="logo" class="img-fluid" />
+                        </a>
+                        <div class="toggle-container">
+                            <button class="toggle-cart">
+                                <i class="fa fa-shopping-cart"></i>
+                            </button>
+                            <span class="cart-item-count">0</span>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Cart Overlay -->
+        <div class="cart-overlay">
+            <div class="cart">
+                <button class="cart-close">
+                    <i class="fa fa-times"></i>
+                </button>
+                <header>
+                    <h3 class="text-slanted">your bag</h3>
+                </header>
+                <!-- cart items -->
+                <div class="cart-items">
+
+                </div>
+                <!-- footer -->
+                <footer>
+                    <h3 class="cart-total text-slanted">Total : $0.00 </h3>
+                    <button class="cart-checkout btn"><a href="">checkout</a></button>
+                </footer>
+            </div>
+        </div>
+
+
+        <div class="page-hero">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="page-hero-title">Home / Checkout</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <section id="main" class="section">
+
+        <div class="checkout-container container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="consumer-details">
+                        <h2>
+                            Checkout
+                        </h2>
+                        <form>
+                            <h4>
+                                Billing Details
+                            </h4>
+                            <fieldset>
+                                <div class="form-group inline-formgroup">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="John Doe">
+                                </div>
+                                <div class="form-group inline-formgroup">
+                                    <label for="email">Email Address</label>
+                                    <input type="text" class="form-control" id="email" placeholder="test@gmail.com">
+                                </div>
+                                <div class="form-group inline-formgroup">
+                                    <label for="mobile">Mobile Number</label>
+                                    <input type="text" class="form-control" id="mobile" placeholder="9833002843">
+                                </div>
+                            </fieldset>
+                            <h4>
+                                Shopping Info
+                            </h4>
+                            <fieldset>
+                                <div class="form-group">
+                                    <label for="address">Your Address</label>
+                                    <input type="text" class="form-control" id="address" placeholder="">
+                                </div>
+                                <div class="form-group inline-formgroup">
+                                    <label for="zip">Zip Code</label>
+                                    <input type="text" class="form-control" id="zip" placeholder="">
+                                </div>
+                                <div class="form-group inline-formgroup">
+                                    <label for="city">City</label>
+                                    <input type="text" class="form-control" id="city" placeholder="Mumbai">
+                                </div>
+                                <div class="form-group inline-formgroup">
+                                    <label for="state">State</label>
+                                    <input type="text" class="form-control" id="state" placeholder="Maharashtra">
+                                </div>
+                            </fieldset>
+                            <h4>
+                                Payment Details
+                            </h4>
+                            <fieldset>
+                                <h6>Payment Method</h6>
+                                <div class="radio-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input card-radio" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            Debit / Credit Card
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input cash-radio" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            Cash on Delivery
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="payment-option">
+                                    <div class="e-money">
+                                        <fieldset>
+                                            <div class="form-group inline-formgroup">
+                                                <label for="e-money-number">Debit / Credit Card Number</label>
+                                                <input type="text" class="form-control" id="e-money-number" placeholder="238521993">
+                                            </div>
+                                            <div class="form-group inline-formgroup">
+                                                <label for="e-money-pin">PIN</label>
+                                                <input type="text" class="form-control" id="ee-money-pin" placeholder="6891">
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="cash-on-delivery none">
+                                        <img src="assets/img/icon-cash-on-delivery.svg" alt="cash-on-delivery" class="cash-on-delivery-img" />
+                                        <p>The ‘Cash on Delivery’ option enables you to pay in cash when our delivery courier arrives at your residence. Just make sure your address is correct so that your order will not be cancelled.</p>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cart-details">
+                        <h2>Summary</h2>
+                        <ul class="cart-list">
+                        </ul>
+                        <div class="checkout-total">
+                            <span>
+                                TOTAL
+                            </span>
+                            <span class="total-span">
+
+                            </span>
+                        </div>
+                        <div class="shipping-charges">
+                            <span>
+                                SHIPPING CHARGES
+                            </span>
+                            <span>
+                                <b>
+                                    $50.00
+                                </b>
+                            </span>
+                        </div>
+                        <div class="checkout-final-total">
+                            <span>
+                                GRAND TOTAL
+                            </span>
+                            <span class="final-total-span">
+
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer id="footer" class="footer js-reveal">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer-inner">
+                        <img src="../../assets/img/logo-white.svg" alt="footer logo" class="img-fluid" />
+                        <div class="social-icons">
+                            <span class="facebook">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                            <span class="twitter">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                            <span class="instagram">
+                                <i class="fa fa-instagram"></i>
+                            </span>
+                        </div>
+                        <div class="copyright">
+                            Copyright &copy; 2022 The Comfy Store<br /> All rights reserved
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/vendor/jquery.min.js"></script>
+    <script src="assets/js/vendor/popper.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+    <script src="assets/js/vendor/jquery.scroll-reveal.js"></script>
+
+    <!-- build:js -->
+    <script src="assets/js/app.js"></script>
+    <!-- endbuild -->
+</body>
+
+</html>
