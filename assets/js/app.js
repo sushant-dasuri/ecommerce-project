@@ -273,7 +273,7 @@ _cartItems.append(cartContainer);
             cartItemAmount += 1;
             $(buttonClicked).next('p').html(cartItemAmount);
             cart.map((item) => {
-              item.id === buttonClicked.getAttribute('data-id') ? item.price = cartItemAmount : item.price;
+              item.id === parseInt(buttonClicked.getAttribute('data-id')) ? item.amount = cartItemAmount : item.price;
             })
             localStorage.setItem('cart', JSON.stringify(cart));
             app.calculateCartItemsTotal();
@@ -284,7 +284,7 @@ _cartItems.append(cartContainer);
         cartItemAmount -= 1;
         cartItemAmount == 0 ? app.removeCartItems(event) : $(buttonClicked).prev('p').html(cartItemAmount);
         cart.map((item) => {
-          item.id === buttonClicked.getAttribute('data-id') ? (cartItemAmount == 0 ? app.removeCartItems(event) : item.price = cartItemAmount) : item.price;
+          item.id === parseInt(buttonClicked.getAttribute('data-id')) ? (cartItemAmount == 0 ? app.removeCartItems(event) : item.amount = cartItemAmount) : item.price;
         })
         localStorage.setItem('cart', JSON.stringify(cart));
         app.calculateCartItemsTotal();
@@ -301,7 +301,7 @@ _cartItems.append(cartContainer);
     let parent = event.target.closest(".cart-item");
     parent.remove();
     cart.map((item, index) => {
-       if(item.id === parent.getAttribute('data-id')) {
+       if(item.id === parseInt(parent.getAttribute('data-id'))) {
         cart.splice(index, 1);
         
        }
@@ -459,7 +459,7 @@ updateCheckout() {
   checkoutTotal = parseFloat(JSON.parse(localStorage.getItem('total')));
    console.log(checkoutTotal);
   _checkoutTotalSpan.innerHTML = `<b>$${checkoutTotal}</b>`;
-  _checkoutFinalTotalSpan.innerHTML = `<b>$${checkoutTotal + 50}</b>`;
+  _checkoutFinalTotalSpan.innerHTML = `<b>$${(checkoutTotal + 50).toFixed(2)}</b>`;
 },
 
 
