@@ -204,7 +204,8 @@ const app = {
        }
       
       let productAmount = 1;
-      let duplicateItem = cart.find(([item]) => item === productId);
+      let duplicateItem = cart.find(item => item.id === parseInt(productId) ? item.amount += 1 : '');
+      console.log(duplicateItem);
       _cartItems.empty();
 
       //Check for duplicate item in cart
@@ -213,7 +214,7 @@ const app = {
         app.calculateCartItemsTotal();
       }
       else {
-        cart.push([productId, productImageAlt, productImageSrc, productTitle, productPrice, productAmount]);
+        cart.push({id: parseInt(productId), imageAlt: productImageAlt, imageSrc: productImageSrc, title: productTitle, price: productPrice, amount: productAmount});
         app.calculateCartItemsTotal();
       }
 
@@ -237,20 +238,20 @@ const app = {
    // Add Cart Items to Html
    addingCartItemsToHtml(product) {
     let addedItem = `
-    <div class="cart-item" data-id="${product[0]}">
- <img src="${product[2]}" class="cart-item-img" alt="${product[1]}">  
+    <div class="cart-item" data-id="${product.id}">
+ <img src="${product.imageSrc}" class="cart-item-img" alt="${product.imageAlt}">  
          <div class="cart-item-details">
-           <h4 class="cart-item-name">${product[3]}</h4>
-           <p class="cart-item-price">$${product[4]}</p>
+           <h4 class="cart-item-name">${product.title}</h4>
+           <p class="cart-item-price">$${product.price}</p>
            <button class="cart-item-remove-btn" data-id="">remove</button>
          </div>
        
          <div>
-           <button class="cart-item-increase-btn" data-id="${product[0]}">
+           <button class="cart-item-increase-btn" data-id="${product.id}">
              <i class="fa fa-chevron-up"></i>
            </button>
-           <p class="cart-item-amount" data-id="${product[0]}">${product[5]}</p>
-           <button class="cart-item-decrease-btn" data-id="${product[0]}">
+           <p class="cart-item-amount" data-id="${product.id}">${product.amount}</p>
+           <button class="cart-item-decrease-btn" data-id="${product.id}">
              <i class="fa fa-chevron-down"></i>
            </button>
          </div>
@@ -272,7 +273,7 @@ _cartItems.append(cartContainer);
             cartItemAmount += 1;
             $(buttonClicked).next('p').html(cartItemAmount);
             cart.map((item) => {
-              item[0] === buttonClicked.getAttribute('data-id') ? item[5] = cartItemAmount : item[5];
+              item.id === buttonClicked.getAttribute('data-id') ? item.price = cartItemAmount : item.price;
             })
             localStorage.setItem('cart', JSON.stringify(cart));
             app.calculateCartItemsTotal();
@@ -283,7 +284,7 @@ _cartItems.append(cartContainer);
         cartItemAmount -= 1;
         cartItemAmount == 0 ? app.removeCartItems(event) : $(buttonClicked).prev('p').html(cartItemAmount);
         cart.map((item) => {
-          item[0] === buttonClicked.getAttribute('data-id') ? (cartItemAmount == 0 ? app.removeCartItems(event) : item[5] = cartItemAmount) : item[5];
+          item.id === buttonClicked.getAttribute('data-id') ? (cartItemAmount == 0 ? app.removeCartItems(event) : item.price = cartItemAmount) : item.price;
         })
         localStorage.setItem('cart', JSON.stringify(cart));
         app.calculateCartItemsTotal();
@@ -300,7 +301,7 @@ _cartItems.append(cartContainer);
     let parent = event.target.closest(".cart-item");
     parent.remove();
     cart.map((item, index) => {
-       if(item[0] === parent.getAttribute('data-id')) {
+       if(item.id === parent.getAttribute('data-id')) {
         cart.splice(index, 1);
         
        }
@@ -311,10 +312,10 @@ _cartItems.append(cartContainer);
 
   // Update Cart Count in Navbar Cart Icon
   updateCartCount() {
-    let cartCount = 0;
-    cart.map((item) => {
-       cartCount += item[item.length - 1];
-    })
+    let cartAmount = cart.map(item => item.amount)
+    console.log(cartAmount);
+    let cartCount = cartAmount.reduce((acc, cur) => acc + cur, 0)
+    console.log(cartCount);
     _cartCount.html(cartCount);
   },
 
@@ -322,11 +323,12 @@ _cartItems.append(cartContainer);
   calculateCartItemsTotal() {
     cartTotal = 0;
    cart.map((item) => {
-     let total = (item[item.length - 2]) * (item[item.length - 1]);
+     let total = (item.price) * (item.amount);
      cartTotal = Math.round((cartTotal + total) * 100) / 100;
      
    })
    let totalContent = `Total : $${cartTotal}`;
+   localStorage.setItem('total', JSON.stringify(cartTotal))
    _cartTotal.html(totalContent);
    app.updateCartCount();
  },
@@ -438,25 +440,24 @@ updateCheckout() {
   checkoutData.map((cart) => {
     let li = document.createElement("li");
     li.innerHTML = `
-    <div class="checkout-img"><img src="${cart[2]}" alt="${cart[3]}" /></div>
+    <div class="checkout-img"><img src="${cart.imageSrc}" alt="${cart.imageAlt}" /></div>
       <div class="item-details">
       <span>
-      ${cart[1]}
+      ${cart.title}
       </span>
       <span>
-      ${cart[5]}
+      ${cart.amount}
       </span>
       <p class="item-price">
-        $${cart[4]}
+        $${cart.price}
       </p>
     </div>
     `
     updateCheckoutList.appendChild(li);
 
-    let total = (cart[4] * cart[5])
-   checkoutTotal += total;
-   console.log(checkoutTotal);
   })
+  checkoutTotal = parseFloat(JSON.parse(localStorage.getItem('total')));
+   console.log(checkoutTotal);
   _checkoutTotalSpan.innerHTML = `<b>$${checkoutTotal}</b>`;
   _checkoutFinalTotalSpan.innerHTML = `<b>$${checkoutTotal + 50}</b>`;
 },
