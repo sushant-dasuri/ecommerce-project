@@ -53,6 +53,11 @@
             margin: 0 auto;
             margin-bottom: 3rem;
 
+            &.disabled {
+                cursor: not-allowed;
+                opacity: 0.5;
+              }
+
             a {
                 color: $white;
 
@@ -141,4 +146,5 @@
             transform: translateX(0%);
         }
     }
+
 }

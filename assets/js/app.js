@@ -46,7 +46,6 @@ const app = {
         app.productSearch();
         app.filterByCompanyName();
         app.cashOnDeliveryToggle();
-        app.updateCheckout();
     },
 
     // Load the Products JSON file 
@@ -327,6 +326,8 @@ _cartItems.append(cartContainer);
      cartTotal = Math.round((cartTotal + total) * 100) / 100;
      
    })
+
+   cartTotal !== 0 ? _cartCheckout.removeClass('disabled') : _cartCheckout.addClass('disabled')
    let totalContent = `Total : $${cartTotal}`;
    localStorage.setItem('total', JSON.stringify(cartTotal))
    _cartTotal.html(totalContent);
@@ -478,6 +479,7 @@ $(window).on('load', function() {
   let page = path.split("/").pop();
   page === 'product.html' ? app.singleProductDetails() : '';
   page === 'products.html' ? app.priceRangeSelector() : '';
+  page === 'checkout.html' ? app.updateCheckout() : '';
     _preloader.fadeOut('slow', function(){
 		_body.css({'overflow-y':'unset'});
 	});
