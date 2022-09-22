@@ -31,6 +31,7 @@ let updateCheckoutList = document.querySelector('.cart-list');
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let cartTotal = 0;
 let item = '';
+let page = '';
 
 const app = {
     init() {
@@ -141,6 +142,7 @@ const app = {
    cartHide() {
      _cartButton.on("click", function() {
       _cartOverlay.removeClass("show");
+     page === 'checkout.html' ? app.updateCheckout() : '';
      })
    },
 
@@ -436,6 +438,7 @@ singleProductDetails() {
 //Update checkout page summary
 
 updateCheckout() {
+  updateCheckoutList.innerHTML = '';
   let checkoutData = JSON.parse(localStorage.getItem('cart'));
   let checkoutTotal = 0;
   checkoutData.map((cart) => {
@@ -476,7 +479,7 @@ $(() => {
 
 $(window).on('load', function() {
   let path = window.location.pathname;
-  let page = path.split("/").pop();
+  page = path.split("/").pop();
   page === 'product.html' ? app.singleProductDetails() : '';
   page === 'products.html' ? app.priceRangeSelector() : '';
   page === 'checkout.html' ? app.updateCheckout() : '';
