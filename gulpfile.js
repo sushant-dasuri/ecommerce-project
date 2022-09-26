@@ -65,7 +65,8 @@ function vendorJS() {
                     "./node_modules/jquery/dist/*",
                     "!./node_modules/jquery/dist/core.js",
                     "./node_modules/popper.js/dist/umd/popper.*",
-                    "./node_modules/bootstrap/dist/js/*"
+                    "./node_modules/bootstrap/dist/js/*",
+                    "./node_modules/jquery-validation/dist/jquery.validate.min.js"
                 ])
                 .pipe(gulp.dest("./assets/js/vendor"));
 }
