@@ -24,7 +24,8 @@
     "jquery": "^3.5.1",
     "jquery-validation": "^1.19.5",
     "nunjucks": "^3.2.3",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "scrollreveal": "^4.0.9"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
