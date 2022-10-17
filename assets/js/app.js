@@ -32,6 +32,7 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let cartTotal = 0;
 let item = '';
 let page = '';
+let pale = '';
 
 const app = {
     init() {
@@ -206,7 +207,6 @@ const app = {
       
       let productAmount = 1;
       let duplicateItem = cart.find(item => item.id === parseInt(productId) ? item.amount += 1 : '');
-      console.log(duplicateItem);
       _cartItems.empty();
 
       //Check for duplicate item in cart
@@ -314,9 +314,7 @@ _cartItems.append(cartContainer);
   // Update Cart Count in Navbar Cart Icon
   updateCartCount() {
     let cartAmount = cart.map(item => item.amount)
-    console.log(cartAmount);
     let cartCount = cartAmount.reduce((acc, cur) => acc + cur, 0)
-    console.log(cartCount);
     _cartCount.html(cartCount);
   },
 
@@ -461,7 +459,6 @@ updateCheckout() {
 
   })
   checkoutTotal = parseFloat(JSON.parse(localStorage.getItem('total')));
-   console.log(checkoutTotal);
   _checkoutTotalSpan.innerHTML = `<b>$${checkoutTotal}</b>`;
   _checkoutFinalTotalSpan.innerHTML = `<b>$${(checkoutTotal + 50).toFixed(2)}</b>`;
 },
