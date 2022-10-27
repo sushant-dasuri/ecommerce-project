@@ -12,7 +12,7 @@ A beginner ecommerce project using HTML, CSS & JAVASCRIPT(ES6)
 - [Nunjucks](https://mozilla.github.io/nunjucks/) - Front-end templating
 - [SASS](https://sass-lang.com/) - CSS preprocessor
 - [ES6](https://es6.io/) - JavaScript
-- [Jquery] (https://jquery.com/) - Jquery
+- [Jquery](https://jquery.com/) - Jquery
 
 ### Getting Started
 
