@@ -14,6 +14,11 @@
             font-size: 0.85rem;
             color: $black;
             font-weight: 700;
+
+            &.error {
+                color: $error-red;
+                font-weight: 500;
+            }
         }
 
         .form-group {
@@ -22,6 +27,15 @@
 
         .inline-formgroup {
             width: 49%;
+        }
+
+        .form-control {
+
+            &.error {
+                border-color: $error-red;
+                background-color: rgba($error-red, 0.1);
+                color: $error-red;
+            }
         }
 
     }
@@ -156,5 +170,63 @@
         justify-content: space-between;
         font-weight: 300;
     }
+
+    .checkout-btn-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+
+            a {
+                color: $white;
+
+                &:hover {
+                    color: $white;
+                    text-decoration: none;
+                }
+
+            }
+        
+    }
+
 }
 
+.thankyou-modal {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    outline: transparent solid 2px;
+    outline-offset: 2px;
+    border-radius: $borderRadius;
+    color: inherit;
+    background-color: $white;
+    justify-content: center;
+
+    
+    
+    .modal-content {
+        padding: 3rem;
+        border: 0px;
+
+        .thankyou-img {
+            width: 100%;
+            max-width: 64px;
+            margin-bottom: 1.5rem;
+        }
+    
+        .thankyou-heading {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            line-height: 1.125;
+        }
+    
+        .confirmation-text {
+            margin-bottom: 1.5rem;
+            line-height: 1.66;
+            font-size: 0.9375rem;
+            color: rgba(0,0,0,0.5);
+            font-weight: 300;
+        }
+    }
+}

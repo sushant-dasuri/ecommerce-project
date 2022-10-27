@@ -21,6 +21,11 @@ const _productSearch = $('.search-input');
 const _priceRangeSelect = $('.price-filter');
 const _cardDiv = $(".e-money");
 const _CODDiv = $(".cash-on-delivery");
+const _checkoutForm = $('#checkout-form');
+const _checkoutFormInputs = $('#checkout-form .form-control');
+const _checkoutButton = $(".checkout-btn");
+const _homeButton = $(".home-btn");
+const _thankYouModal = $('#thankYouModal');
 const _priceRangeValue = document.querySelector('.price-value');
 const _productsContainer = document.querySelector(".products-container-outer");
 const _searchEmpty = document.querySelector('.empty-search');
@@ -32,7 +37,6 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let cartTotal = 0;
 let item = '';
 let page = '';
-let pale = '';
 
 const app = {
     init() {
@@ -48,6 +52,18 @@ const app = {
         app.productSearch();
         app.filterByCompanyName();
         app.cashOnDeliveryToggle();
+        app.closeModal();
+        _checkoutForm.validate(app.validations);
+        _checkoutFormInputs.on('blur keyup', function() {
+          if (_checkoutForm.valid()) {
+            _checkoutButton.removeClass("disabled");  
+          } else {
+            _checkoutButton.hasClass("disabled") ? '' : _checkoutButton.addClass("disabled");
+          }
+        });
+        _checkoutButton.on('click', ()=>{
+          _thankYouModal.modal();
+        })
     },
 
     // Load the Products JSON file 
@@ -160,6 +176,7 @@ const app = {
         _cardDiv.addClass("none");
         _CODDiv.removeClass("none");
       }
+      _checkoutForm.valid() ?  _checkoutButton.removeClass("disabled") : (_checkoutButton.hasClass("disabled") ? '' : _checkoutButton.addClass("disabled"));
     })
    },
 
@@ -463,7 +480,104 @@ updateCheckout() {
   _checkoutFinalTotalSpan.innerHTML = `<b>$${(checkoutTotal + 50).toFixed(2)}</b>`;
 },
 
+//Validations for checkout form
+validations: {
+    rules: {
+        name: {
+          required: true,
+        },
+        email: {
+          required: true,
+          email: true
+        },
+        mobile: {
+          required: true,
+				  digits: true,
+				  minlength: 10,
+				  maxlength: 10
+        },
+        address: {
+          required: true
+        },
+        zipcode: {
+          required: true,
+				  digits: true,
+				  minlength: 6,
+				  maxlength: 6
+        },
+        city: {
+          required: true
+        },
+        state: {
+          required: true
+        },
+        credit: {
+          required: true,
+				  digits: true,
+				  minlength: 16,
+				  maxlength: 16
+        },
+        pin: {
+          required: true,
+				  digits: true,
+				  minlength: 4,
+				  maxlength: 4
+        }
+    },
+    messages: {
+      name: {
+				required: 'Please enter your name',
+        name: 'Please enter a valid name'
+			},
+      email: {
+				required: 'Please enter your email address',
+				email: 'Please enter a valid email address'
+			},
+			mobile: {
+				required: 'Please enter your mobile number',
+				digits: 'Please enter valid mobile number',
+				minlength: 'Please enter atleast 10 digits',
+				maxlength: 'Mobile number field accept only 10 digits'
+			},
+      address: {
+        required: 'Please enter your address'
+      },
+      zipcode: {
+        required: 'Please enter your zip code',
+        digits: 'Please enter a valid zip code',
+				minlength: 'Please enter atleast 6 digits',
+				maxlength: 'Zip Code field accepts only 6 digits'
+      },
+      city: {
+        required: 'Please enter your city'
+      },
+      state: {
+        required: 'Please enter your state'
+      },
+      credit: {
+        required: 'Please enter your credit or debit card number',
+        digits: 'Please enter valid credit or debit card number',
+				minlength: 'Please enter atleast 16 digits',
+				maxlength: 'Card field accepts only 16 digits'
+      },
+      pin: {
+        required: 'Please enter your debit or credit card pin',
+        digits: 'Please enter valid pin number',
+				minlength: 'Please enter atleast 4 digits',
+				maxlength: 'PIN number accepts only 4 digits'
+      }
+		
+    }
+},
 
+//Closing Modal
+closeModal() {
+  _homeButton.on('click', (event) => {
+    event.preventDefault()
+    localStorage.removeItem('cart');
+    location.href = 'home.html';
+  })
+}
   
 }
 
