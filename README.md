@@ -8,7 +8,6 @@ A beginner ecommerce project using HTML, CSS & JAVASCRIPT(ES6)
 
 ### Technologies
 - [Bootstrap](https://getbootstrap.com/docs/4.6/getting-started/introduction/) - Front-end framework
-- [Remixicon](https://remixicon.com/) - Icon fonts
 - [Nunjucks](https://mozilla.github.io/nunjucks/) - Front-end templating
 - [SASS](https://sass-lang.com/) - CSS preprocessor
 - [ES6](https://es6.io/) - JavaScript
