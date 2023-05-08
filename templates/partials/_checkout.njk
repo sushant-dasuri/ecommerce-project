@@ -1,6 +1,6 @@
 <div class="checkout-container container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="consumer-details">
                 <h2>
                     Checkout
@@ -47,7 +47,7 @@
                     <h4>
                      Payment Details
                     </h4>
-                    <fieldset>
+                    <fieldset class="radio-fieldset">
                         <h6>Payment Method</h6>
                         <div class="radio-group">
                             <div class="form-check">
@@ -85,7 +85,7 @@
                 </form>   
             </div>
         </div>
-         <div class="col-md-4">
+         <div class="col-md-6">
             <div class="cart-details">
                 <h2>Summary</h2>
                 <ul class="cart-list">
@@ -122,6 +122,10 @@
            </div> 
         </div>
     </div>
+</div>
+<div class="no-checkout-container container">
+    <h2>Sorry there are no items in cart to checkout</h2>
+    <a href="home.html" class="checkout-redirect-button">Go Back</a>
 </div>
 <!-- Thank you modal -->
 <div class="modal fade" id="thankYouModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="thankYouModal" aria-hidden="true">

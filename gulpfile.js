@@ -191,9 +191,11 @@ function minifyImage() {
                 }));
 }
 
+
+
 //Copy Remaining Assets
 function copyAssets() {
-    return gulp.src([ paths.favicons.src, paths.video.src, paths.fonts.src], {
+    return gulp.src([ paths.favicons.src, paths.video.src, paths.fonts.src, paths.image.src, 'assets/css/**/*.*', '!assets/css/app.css', 'assets/js/**/*.*', '!assets/js/app.js'], {
             base: "./"})
         .pipe(gulp.dest("dist/"));
 }

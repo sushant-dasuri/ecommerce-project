@@ -29,6 +29,8 @@ const _thankYouModal = $('#thankYouModal');
 const _priceRangeValue = document.querySelector('.price-value');
 const _productsContainer = document.querySelector(".products-container-outer");
 const _searchEmpty = document.querySelector('.empty-search');
+const _showCheckoutContent = document.querySelector('.checkout-container');
+const _hideCheckoutContent = document.querySelector('.no-checkout-container')
 const _checkoutTotalSpan = document.querySelector('.total-span');
 const _checkoutFinalTotalSpan = document.querySelector('.final-total-span');
 let pageTitle = document.querySelector('.page-hero-title');
@@ -159,7 +161,9 @@ const app = {
    cartHide() {
      _cartButton.on("click", function() {
       _cartOverlay.removeClass("show");
-     page === 'checkout.html' ? app.updateCheckout() : '';
+     if(page === 'checkout.html') {
+     app.updateCheckout();
+     }
      })
    },
 
@@ -247,7 +251,7 @@ const app = {
        else if(($(buttonClicked).hasClass("product-details"))) {
           let id = buttonClicked.getAttribute('data-id')
           sessionStorage.setItem('id', JSON.stringify(id));
-          window.open('/product.html?id='+ id, '_self')
+          window.open('ecommerce-website/product.html?id='+ id, '_self')
          
         }
      })
@@ -456,28 +460,37 @@ updateCheckout() {
   updateCheckoutList.innerHTML = '';
   let checkoutData = JSON.parse(localStorage.getItem('cart'));
   let checkoutTotal = 0;
-  checkoutData.map((cart) => {
-    let li = document.createElement("li");
-    li.innerHTML = `
-    <div class="checkout-img"><img src="${cart.imageSrc}" alt="${cart.imageAlt}" /></div>
-      <div class="item-details">
-      <span>
-      ${cart.title}
-      </span>
-      <span>
-      ${cart.amount}
-      </span>
-      <p class="item-price">
-        $${cart.price}
-      </p>
-    </div>
-    `
-    updateCheckoutList.appendChild(li);
+  if(checkoutData !== null || undefined) {
+    $(_showCheckoutContent).addClass('block');
+    $(_hideCheckoutContent).addClass('none');
+    checkoutData.map((cart) => {
+      let li = document.createElement("li");
+      li.innerHTML = `
+      <div class="checkout-img"><img src="${cart.imageSrc}" alt="${cart.imageAlt}" /></div>
+        <div class="item-details">
+        <span>
+        ${cart.title}
+        </span>
+        <span>
+        ${cart.amount}
+        </span>
+        <p class="item-price">
+          $${cart.price}
+        </p>
+      </div>
+      `
+      updateCheckoutList.appendChild(li);
+  
+    })
+    checkoutTotal = parseFloat(JSON.parse(localStorage.getItem('total')));
+    _checkoutTotalSpan.innerHTML = `<b>$${checkoutTotal}</b>`;
+    _checkoutFinalTotalSpan.innerHTML = `<b>$${(checkoutTotal + 50).toFixed(2)}</b>`;
+  }
 
-  })
-  checkoutTotal = parseFloat(JSON.parse(localStorage.getItem('total')));
-  _checkoutTotalSpan.innerHTML = `<b>$${checkoutTotal}</b>`;
-  _checkoutFinalTotalSpan.innerHTML = `<b>$${(checkoutTotal + 50).toFixed(2)}</b>`;
+  else {
+    $(_showCheckoutContent).addClass('none');
+    $(_hideCheckoutContent).addClass('block');
+  }
 },
 
 //Validations for checkout form
@@ -595,6 +608,6 @@ $(window).on('load', function() {
   page === 'products.html' ? app.priceRangeSelector() : '';
   page === 'checkout.html' ? app.updateCheckout() : '';
     _preloader.fadeOut('slow', function(){
-		_body.css({'overflow-y':'unset'});
+		_body.css({'overflow-y':'unset', 'height' : 'auto'});
 	});
 })
