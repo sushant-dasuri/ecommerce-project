@@ -460,9 +460,9 @@ updateCheckout() {
   updateCheckoutList.innerHTML = '';
   let checkoutData = JSON.parse(localStorage.getItem('cart'));
   let checkoutTotal = 0;
-  if(checkoutData !== null || undefined) {
-    $(_showCheckoutContent).addClass('block');
-    $(_hideCheckoutContent).addClass('none');
+  if((checkoutData !== null || undefined) && checkoutData.length !== 0) {
+    $(_showCheckoutContent).removeClass("none").addClass('block');
+    $(_hideCheckoutContent).removeClass("block").addClass('none');
     checkoutData.map((cart) => {
       let li = document.createElement("li");
       li.innerHTML = `
@@ -488,8 +488,8 @@ updateCheckout() {
   }
 
   else {
-    $(_showCheckoutContent).addClass('none');
-    $(_hideCheckoutContent).addClass('block');
+    $(_showCheckoutContent).removeClass("block").addClass('none');
+    $(_hideCheckoutContent).removeClass("none").addClass('block');
   }
 },
 
